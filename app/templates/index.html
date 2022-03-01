@@ -5,9 +5,46 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-main/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css') }}">
     <title>Student management system</title>
 </head>
 <body>
-    <h1>Welcome to the school dashboard admin</h1>
+    <div class="container my-5">
+        <h1 class="text-center">Welcome to the school dashboard admin</h1>
+        <h3 class="text-muted text-center">Here is the list of current students, <a href="/add-new"><small>add new student</small></a></h3>
+        {% with messages = get_flashed_messages() %}
+             {% if messages %}
+                <div class="alert alert-info">
+                   {% for message in messages %}
+                   <span>{{ message }}</span>
+                   {% endfor %}
+                </div>
+             {% endif %}
+        {% endwith %}
+
+
+        {% for row in rows %}
+        <div class="my-card bg-white mb-md-0 mb-4 cont border-0 p-4 m-md-5 d-sm-inline-block">
+
+            <div class="card-content row">
+                <div class='col-md-5 img text-center'>
+                    <img alt='avatar' src="{{ url_for('static', filename='images/avatar-icon.svg') }}" />
+                    <p class='font-weight mt-3'><strong>{{row['name']}}</strong></p>
+                </div>
+                <div class='col-md-7'>
+                    <div><span class='fw-bolder mr-5'>Full Name</span> {{row['name']}}</div>
+                    <hr />
+                    <div><span class='fw-bolder mr-5'>Address</span> {{row['address']}}</div>
+                    <hr />
+                    <div><span class='fw-bolder mr-5'>City</span> {{row['city']}}</div>
+                    <hr />
+                    <div><span class='fw-bolder mr-5'>Pincode</span> {{row['pincode']}}</div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

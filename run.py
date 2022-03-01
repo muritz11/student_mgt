@@ -3,5 +3,7 @@
 # we import the app module from the app file, what we r basically doing is importing the app object in the init file.
 from app import app
 
+
 if __name__ == "__main__":
     app.run()
+    app.run(debug=True)

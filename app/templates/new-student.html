@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-main/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css') }}">
+    <title>Add new student</title>
+</head>
+<body>
+    <h3 class="text-center bg-secondary p-4 text-white">Add new student</h3>
+    <div class="container">
+        <form action="" method="post" class="my-5">
+            {{ form.hidden_tag() }}
+            <div>
+                {% if form.name.errors %}
+                    {{form.name(class="form-control is-invalid", placeholder="Enter student name")}}
+                    {% for error in form.name.errors %}
+                       <div class="invalid-feedback mb-4">
+                           <span>{{error}}</span>
+                       </div>
+                    {% endfor %}
+               {% else %}
+                    {{form.name(class="form-control mb-4", placeholder="Enter student name")}}
+               {% endif %}
+
+
+                {{ form.address(class="form-control mb-4", placeholder="Enter student address") }}
+                {{ form.city(class="form-control mb-4", placeholder="Enter city") }}
+                {{ form.pincode(class="form-control mb-4", placeholder="Enter pincode") }}
+                {{ form.send(class="btn btn-success w-100") }}
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
